@@ -1,0 +1,12 @@
+services:
+  autologout_alterable_event_subscriber:
+    class: Drupal\autologout_alterable\EventSubscriber\AutologoutSubscriber
+    tags:
+      - {name: event_subscriber}
+    arguments: ['@autologout_alterable.manager', '@current_user', '@request_stack']
+
+  autologout_alterable.manager:
+    class: Drupal\autologout_alterable\AutologoutManager
+    tags:
+      - {name: autologout_manager}
+    arguments: ['@current_user', '@user.data', '@current_route_match', '@request_stack', '@entity_type.manager', '@event_dispatcher', '@session', '@datetime.time', '@messenger', '@config.factory', '@redirect.destination', '@logger.factory']

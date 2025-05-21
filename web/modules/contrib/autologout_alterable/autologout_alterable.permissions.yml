@@ -1,0 +1,7 @@
+change own autologout_alterable threshold:
+  title: 'Change own autologout_alterable threshold'
+administer autologout_alterable:
+  title: 'Administer autologout_alterable'
+autologout_alterable infinite session timeout:
+  title: 'Infinite session timeout'
+  description: 'User will never be logged out due to inactivity from the autologout_alterable module, other modules may still be able to alter it.'

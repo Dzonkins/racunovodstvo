@@ -1,0 +1,12 @@
+name: Automated Logout Alterable
+type: module
+description: 'Adds automated timed logout that can be altered.'
+core_version_requirement: ^10 || ^11
+configure: autologout_alterable.settings_form
+dependencies:
+  - drupal:user
+
+# Information added by Drupal.org packaging script on 2025-03-20
+version: '1.1.1'
+project: 'autologout_alterable'
+datestamp: 1742454415

@@ -1,0 +1,10 @@
+autologout:
+  version: "1.1.1"
+  js:
+    js/autologout-profile-handler.js: {}
+
+  dependencies:
+    - core/drupal.debounce
+    - core/drupal.dialog
+    - core/drupalSettings
+    - core/once

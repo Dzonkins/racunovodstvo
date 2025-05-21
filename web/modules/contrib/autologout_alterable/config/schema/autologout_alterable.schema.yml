@@ -1,0 +1,117 @@
+autologout_alterable.settings:
+  type: config_object
+  label: 'Autologout alterable settings'
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Enable autologout'
+    session_timeout:
+      type: integer
+      label: 'Timeout value'
+    max_session_timeout:
+      type: integer
+      label: 'Max timeout value'
+    ignore_user_activity:
+      type: boolean
+      label: 'Logout user regardless of activity'
+    use_individual_logout_threshold:
+      type: boolean
+      label: 'Enable user-specific logout thresholds'
+    use_infinite_session_for_privileged:
+      type: boolean
+      label: 'Use infinite session for privileged users, e.g. user with permission "Infinite session timeout". Session can still be altered by other modules.'
+    role_logout:
+      type: boolean
+      label: 'Enable role timeout'
+    role_logout_max:
+      type: boolean
+      label: 'Use highest role timeout value'
+    include_destination:
+      type: boolean
+      label: 'Include destination to the default redirect url after logout'
+    client_activity_mousemove:
+      type: boolean
+      label: 'Consider mouse move as a client activity'
+    client_activity_touchmove:
+      type: boolean
+      label: 'Consider touch move as a client activity'
+    client_activity_click:
+      type: boolean
+      label: 'Consider click as a client activity'
+    client_activity_keydown:
+      type: boolean
+      label: 'Consider keydown as a client activity'
+    client_activity_scroll:
+      type: boolean
+      label: 'Consider scroll as a client activity'
+    show_dialog:
+      type: boolean
+      label: 'Show the autologout dialog'
+    dialog_limit:
+      type: integer
+      label: 'Seconds before session timeout to show dialog'
+    dialog_width:
+      type: integer
+      label: 'Modal width'
+    countdown_format:
+      type: string
+      label: 'Countdown timer format, supported tokens: %days%, %hours%, %mins%, %secs%'
+    dialog_title:
+      type: label
+      label: 'Title'
+    dialog_message:
+      type: text
+      label: 'Message to display'
+    dialog_stay_button:
+      type: label
+      label: 'Stay logged in button text'
+    dialog_logout_button:
+      type: label
+      label: 'Logout button text'
+    dialog_title_not_extendible:
+      type: label
+      label: 'Title when session cannot be extended'
+    dialog_message_not_extendible:
+      type: text
+      label: 'Message to display when session cannot be extended'
+    dialog_close_button_not_extendible:
+      type: label
+      label: 'Close message button text when session cannot be extended'
+    dialog_logout_button_not_extendible:
+      type: label
+      label: 'Logout button text when session cannot be extended'
+    logged_out_dialog_title:
+      type: label
+      label: 'Dialog title after logged out if browser failed to redirect internally'
+    logged_out_dialog_message:
+      type: text
+      label: 'Dialog message to display after logged out if browser failed to redirect internally'
+    inactivity_message:
+      type: text
+      label: 'Message displayed after logged out due to inactivity'
+    inactivity_message_type:
+      type: string
+      label: 'Type of the inactivity message displayed'
+    induced_logout_message:
+      type: text
+      label: 'Message displayed after logged out due to induced logout'
+    induced_logout_message_type:
+      type: string
+      label: 'Type of the induced logout message displayed'
+    use_watchdog:
+      type: boolean
+      label: 'Use watchdog'
+    whitelisted_ip_addresses:
+      type: string
+      label: 'Whitelisted IP addresses, separated by comma'
+
+autologout_alterable.role.*:
+  type: config_object
+  label: 'Autologout alterable role Settings'
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Enabled'
+    session_timeout:
+      type: integer
+      label: 'Session timeout'

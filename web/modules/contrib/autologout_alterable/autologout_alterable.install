@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Install and update functions for the autologout_alterable module.
+ */
+
+/**
+ * Set default values for client activity settings.
+ */
+function autologout_alterable_update_10001() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('autologout_alterable.settings');
+  $config->set('client_activity_mousemove', TRUE);
+  $config->set('client_activity_touchmove', TRUE);
+  $config->set('client_activity_click', TRUE);
+  $config->set('client_activity_keydown', TRUE);
+  $config->set('client_activity_scroll', TRUE);
+  $config->save(TRUE);
+}

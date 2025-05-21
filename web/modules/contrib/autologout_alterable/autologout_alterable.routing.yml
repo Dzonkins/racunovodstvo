@@ -1,0 +1,26 @@
+autologout_alterable.settings_form:
+  path: '/admin/config/people/autologout_alterable'
+  defaults:
+    _form: '\Drupal\autologout_alterable\Form\AutologoutSettingsForm'
+    _title: 'Automated logout settings'
+  requirements:
+    _permission: 'administer autologout_alterable'
+
+autologout_alterable.update_autologout_profile:
+  path: '/api/autologout_alterable/autologout-profile'
+  defaults:
+    _controller: '\Drupal\autologout_alterable\Controller\AutologoutController::updateAutologoutProfile'
+  methods: [ PATCH ]
+  requirements:
+    _format: 'json'
+    _content_type_format: 'json'
+    _user_is_logged_in: 'TRUE'
+
+autologout_alterable.get_autologout_profile:
+  path: '/api/autologout_alterable/autologout-profile'
+  defaults:
+    _controller: '\Drupal\autologout_alterable\Controller\AutologoutController::getAutologoutProfile'
+  methods: [ GET ]
+  requirements:
+    _format: 'json'
+    _user_is_logged_in: 'TRUE'

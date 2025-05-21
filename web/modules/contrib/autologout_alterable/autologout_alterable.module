@@ -1,0 +1,146 @@
+<?php
+
+/**
+ * @file
+ * Hook implementations for the Automated Logout Alterable module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\user\AccountForm;
+
+/**
+ * Implements hook_help().
+ */
+function autologout_alterable_help($route_name, RouteMatchInterface $route_match) {
+  $output = '';
+  if ($route_name === 'help.page.autologout_alterable') {
+    /** @var \Drupal\autologout_alterable\AutologoutManagerInterface $autologout_manager */
+    $autologout_manager = \Drupal::service('autologout_alterable.manager');
+    $seconds = $autologout_manager->getAutoLogoutProfile()->getSessionExpiresIn();
+    $output .= '<h3>' . t('About') . '</h3>';
+    $output .= '<p>' . t("This module allows you to force site users to be logged out after a given amount of time due to inactivity after first being presented with a confirmation dialog. Your current logout threshold is %seconds seconds.", ['%seconds' => $seconds]) . '</p>';
+  }
+  return $output;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the form "user_form".
+ * Adds a field to user to edit that users individual session timeout.
+ */
+function autologout_alterable_form_user_form_alter(&$form, FormStateInterface $form_state) {
+  $current_user = \Drupal::currentUser();
+  $user = NULL;
+  $form_object = $form_state->getFormObject();
+  if ($form_object instanceof AccountForm && $form_object->getEntity() instanceof AccountInterface) {
+    $user = $form_object->getEntity();
+  }
+  if (!$user) {
+    return;
+  }
+  $user_id = $user->id();
+  $access = FALSE;
+
+  // If user-specific thresholds are enabled, and user has access
+  // to change, and they are changing their own and only
+  // their own timeout, or they are an admin.
+  if (\Drupal::config('autologout_alterable.settings')->get('use_individual_logout_threshold') && !\Drupal::currentUser()->isAnonymous() && (($current_user->hasPermission('change own autologout_alterable threshold') && $current_user->id() == $user_id) || $current_user->hasPermission('administer autologout_alterable'))) {
+    $access = TRUE;
+
+    if ($user_id !== NULL) {
+      $autologout_data = \Drupal::service('user.data')->get('autologout', $user_id, 'timeout');
+    }
+  }
+
+  if ($access) {
+    $max_timeout = \Drupal::config('autologout_alterable.settings')->get('max_timeout');
+    $form['session_timeout_' . $user_id] = [
+      '#type' => 'textfield',
+      '#title' => t('Your current logout threshold'),
+      '#default_value' => $autologout_data ?? '',
+      '#size' => 8,
+      '#description' => t('The length of inactivity time, in seconds, before automated log out. Must be between 60 and @max_timeout seconds.', ['@max_timeout' => $max_timeout]),
+      '#element_validate' => ['autologout_alterable_user_uid_timeout_validate'],
+    ];
+
+    $form['actions']['submit']['#submit'][] = 'autologout_alterable_user_profile_submit';
+  }
+}
+
+/**
+ * Form validation.
+ */
+function autologout_alterable_user_uid_timeout_validate($element, FormStateInterface $form_state) {
+  $max_timeout = \Drupal::config('autologout_alterable.settings')->get('max_timeout');
+  $timeout = $element['#value'];
+
+  // Set error if timeout isn't strictly a number between 60 and max.
+  if ($timeout != "" && ($timeout < 10 || ($timeout > 0 && $timeout < 60) || $timeout > $max_timeout || !is_numeric($timeout))) {
+    $form_state->setError($element, t('The timeout must be an integer greater than 60, and less then %max.', ['%max' => $max_timeout]));
+  }
+}
+
+/**
+ * Handle submission of timeout threshold in user/edit.
+ */
+function autologout_alterable_user_profile_submit(&$form, FormStateInterface $form_state) {
+  $current_user = \Drupal::currentUser();
+
+  $user_id = NULL;
+  $form_object = $form_state->getFormObject();
+  if ($form_object instanceof AccountForm && $form_object->getEntity() instanceof AccountInterface) {
+    $user_id = $form_object->getEntity()->id();
+  }
+  if (!$user_id) {
+    return;
+  }
+
+  $access = FALSE;
+
+  // If user-specific thresholds are enabled (the default), and user has access
+  // to change, and they are changing their own and only
+  // their own timeout, or they are an admin.
+  if (!\Drupal::currentUser()->isAnonymous() && (($current_user->hasPermission('change own autologout_alterable threshold') && $current_user->id() == $user_id) || $current_user->hasPermission('administer autologout_alterable'))) {
+    $access = TRUE;
+  }
+
+  // Access is reused here as a security measure. Not only will the element not
+  // display but won't submit without access.
+  // Do not store config if setting to not store config for every user is TRUE.
+  if ($access && \Drupal::config('autologout_alterable.settings')->get('use_individual_logout_threshold')) {
+    $timeout = $form_state->getValue('session_timeout_' . $user_id);
+    \Drupal::service('user.data')->set('autologout_alterable', $user_id, 'session_timeout', $timeout);
+  }
+  else {
+    \Drupal::service('user.data')->set('autologout_alterable', $user_id, 'session_timeout', NULL);
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function autologout_alterable_page_attachments_alter(array &$attachments) {
+  /** @var \Drupal\autologout_alterable\AutologoutManagerInterface $autologout_manager */
+  $autologout_manager = \Drupal::service('autologout_alterable.manager');
+
+  if (!$autologout_manager->isEnabled()) {
+    return;
+  }
+
+  $attachments['#attached']['drupalSettings']['autologout_alterable'] = $autologout_manager->getDrupalSettings();
+  $attachments['#attached']['library'][] = 'autologout_alterable/autologout';
+  $attachments['#cache']['contexts'][] = 'user.roles:authenticated';
+  $attachments['#cache']['tags'][] = 'config:autologout_alterable.settings';
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function autologout_alterable_user_login(): void {
+  /** @var \Drupal\autologout_alterable\AutologoutManagerInterface $autologout_manager */
+  $autologout_manager = \Drupal::service('autologout_alterable.manager');
+  $autologout_manager->setLastActivity();
+}

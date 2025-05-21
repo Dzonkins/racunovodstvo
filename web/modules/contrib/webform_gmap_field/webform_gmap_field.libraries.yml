@@ -1,0 +1,7 @@
+global:
+  version: VERSION
+  js:
+    js/webform_gmap_field.js: {}
+  css:
+    layout:
+      css/webform_gmap_field.css: {}

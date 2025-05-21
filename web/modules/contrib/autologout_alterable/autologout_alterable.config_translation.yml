@@ -1,0 +1,5 @@
+autologout_alterable.settings:
+  title: 'Autologout alterable settings'
+  base_route_name: autologout_alterable.settings_form
+  names:
+    - autologout_alterable.settings

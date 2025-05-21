@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Webform Gmap Field module.
+ */
+
+/**
+ * Implements hook_update_N().
+ *
+ * Update the webform submissions to transform the existing 'webform_gmap_field'
+ * value into a composite element structure.
+ *
+ * This update hook function iterates through all webform submissions and
+ * retrieves the value of the 'webform_gmap_field' element. If the value is
+ * present and contains valid latitude and longitude coordinates, it transforms
+ * the value into a composite element structure with 'lat' and 'lng' properties.
+ * The updated value is then saved back to the submission.
+ */
+function webform_gmap_field_update_9001() {
+  // Load all webform submissions.
+  $submissions = \Drupal::entityTypeManager()
+    ->getStorage('webform_submission')
+    ->loadMultiple();
+
+  foreach ($submissions as $submission) {
+    // Get the value of the existing field.
+    $webform_gmap_field = $submission->getData();
+
+    if ($submission->bundle() != 'webform_gmap_field') {
+      continue;
+    }
+    $webform_key = array_key_first($webform_gmap_field);
+    $json_data = array_values($webform_gmap_field);
+    if (empty($json_data)) {
+      continue;
+    }
+    $json_data = reset($json_data[0]);
+
+    $coords = json_decode($json_data, TRUE);
+
+    if (json_last_error() != JSON_ERROR_NONE) {
+      continue;
+    }
+
+    if (!empty($coords['lat']) && !empty($coords['lng'])) {
+      // Transform the value into a composite element structure.
+      $compositeValue = [
+        'lat' => $coords['lat'],
+        'lng' => $coords['lng'],
+      ];
+      // Update the submission data with the composite element value.
+      $submission->setElementData($webform_key, $compositeValue);
+
+      // Save the updated submission.
+      $submission->save();
+    }
+  }
+
+  return t('Webform submissions updated successfully.');
+}

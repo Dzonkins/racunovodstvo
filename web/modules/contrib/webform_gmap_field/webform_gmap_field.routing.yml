@@ -1,0 +1,9 @@
+webform_gmap_field.gmap_config:
+  path: '/admin/config/services/webform_gmap_field'
+  defaults:
+    _form: '\Drupal\webform_gmap_field\Form\GmapSettingsForm'
+    _title: 'Google Maps API'
+  requirements:
+    _permission: 'administer webform'
+  options:
+    _admin_route: TRUE

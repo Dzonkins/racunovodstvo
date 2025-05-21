@@ -1,0 +1,13 @@
+name: 'Webform Gmap Field'
+type: module
+description: 'Provides a GMap element allows collecting lat/long of the clicked location.'
+package: 'webform'
+configure: webform_gmap_field.gmap_config
+core_version_requirement: ">=8"
+dependencies:
+  - webform:webform
+
+# Information added by Drupal.org packaging script on 2023-06-17
+version: '1.1.1'
+project: 'webform_gmap_field'
+datestamp: 1686998753

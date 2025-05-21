@@ -1,0 +1,18 @@
+.webform-gmap-field-canvas {
+  height: 400px;
+  width: 400px;
+}
+
+#webform_gmap_field {
+  display: none;
+}
+
+.locate_btn {
+  left: 200px!important;
+  background: green;
+  color: #fff;
+  padding: 13px;
+  top: 11px!important;
+  cursor: pointer;
+  font-weight: bold;
+}
