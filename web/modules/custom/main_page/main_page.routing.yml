@@ -1,0 +1,9 @@
+main_page.content:
+  path: '/main'
+  options:
+    no_cache: 'TRUE'
+  defaults:
+    _controller: '\Drupal\main_page\Controller\MainPageController::hello'
+    _title: 'Pocetna stranica'
+  requirements:
+    _permission: 'access content'

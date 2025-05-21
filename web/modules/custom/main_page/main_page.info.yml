@@ -1,0 +1,4 @@
+name: main_page
+type: module
+description: "Main page with all graphs and financial status of company"
+core_version_requirement: 11.x

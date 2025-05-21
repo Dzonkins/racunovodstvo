@@ -1,0 +1,9 @@
+registration.companies:
+  path: '/companies'
+  options:
+    no_cache: 'TRUE'
+  defaults:
+    _controller: '\Drupal\registration\Controller\ContentTypeButtonsController::contentButtons'
+    _title: 'Content Buttons'
+  requirements:
+    _permission: 'access content'

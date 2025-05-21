@@ -1,0 +1,4 @@
+name: invoices
+type: module
+description: "Adding order management functionality."
+core_version_requirement: 11.x

@@ -1,0 +1,36 @@
+invoices.companies:
+  path: '/company-contact'
+  options:
+    no_cache: 'TRUE'
+  defaults:
+    _controller: '\Drupal\invoices\Controller\companies::showContacts'
+    _title: 'Pravna lica'
+  requirements:
+    _permission: 'access content'
+invoices.company-edit:
+  path: '/company-edit/{company_id}'
+  options:
+    no_cache: 'TRUE'
+  defaults:
+    _form: '\Drupal\invoices\Form\EditCompanyContact'
+    _title: 'Izmeni pravno lice'
+  requirements:
+    _permission: 'access content'
+invoices.company-details:
+  path: '/company-details/{company_id}'
+  options:
+    no_cache: 'TRUE'
+  defaults:
+    _form: '\Drupal\invoices\Form\DetailsCompanyContact'
+    _title: 'Detalji pravnog lica'
+  requirements:
+    _permission: 'access content'
+invoices.export-document:
+  path: '/export'
+  options:
+    no_cache: 'TRUE'
+  defaults:
+    _form: '\Drupal\invoices\Form\CreateOutDocument'
+    _title: 'Kreiraj prodaju'
+  requirements:
+    _permission: 'access content'

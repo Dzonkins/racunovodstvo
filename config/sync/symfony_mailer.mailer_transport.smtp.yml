@@ -1,0 +1,18 @@
+uuid: 117d2cb9-8901-4f27-bad9-88ef7c21d13d
+langcode: en
+status: true
+dependencies: {  }
+id: smtp
+label: SMTP
+plugin: smtp
+configuration:
+  user: ''
+  pass: ''
+  host: mail
+  port: 1025
+  query:
+    verify_peer: false
+    local_domain: ''
+    restart_threshold: null
+    restart_threshold_sleep: null
+    ping_threshold: null

@@ -1,0 +1,4 @@
+name: registration
+type: module
+description: "Adding company and user registration functionality."
+core_version_requirement: 11.x
