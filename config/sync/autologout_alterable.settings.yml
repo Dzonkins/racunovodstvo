@@ -1,0 +1,37 @@
+_core:
+  default_config_hash: BQGQc6tAgjJxA_4l6b5Ie6makvNUvHZwcs-QZZN4OkU
+langcode: en
+enabled: true
+session_timeout: 1800
+max_session_timeout: 172800
+ignore_user_activity: false
+use_individual_logout_threshold: false
+use_infinite_session_for_privileged: false
+role_logout: false
+role_logout_max: false
+include_destination: true
+client_activity_mousemove: true
+client_activity_touchmove: true
+client_activity_click: true
+client_activity_keydown: true
+client_activity_scroll: true
+show_dialog: true
+dialog_limit: 60
+dialog_width: 450
+countdown_format: '%hours%:%mins%:%secs%'
+dialog_title: 'Uskoro ce te biti odjavljeni'
+dialog_message: 'You are about to be logged out due to inactivity. If you get logged out, you will lose any unsaved work. Do you need more time?'
+dialog_stay_button: 'Yes'
+dialog_logout_button: 'No'
+dialog_title_not_extendible: 'You are about to be logged out'
+dialog_message_not_extendible: 'Your session is about to be expired and cannot be extended. Save any unsaved work now.'
+dialog_close_button_not_extendible: 'Close message'
+dialog_logout_button_not_extendible: 'Logout now'
+logged_out_dialog_title: 'You have been logged out'
+logged_out_dialog_message: 'Please log in again or follow the link below.'
+inactivity_message: 'You have been logged out due to inactivity.'
+inactivity_message_type: warning
+induced_logout_message: 'You have been logged out.'
+induced_logout_message_type: status
+use_watchdog: true
+whitelisted_ip_addresses: ''

@@ -1,0 +1,19 @@
+uuid: 63a04cba-95f1-448a-bea1-c484389eb912
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_zastupnik
+    - node.type.companies
+id: node.companies.field_zastupnik
+field_name: field_zastupnik
+entity_type: node
+bundle: companies
+label: Zastupnik
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

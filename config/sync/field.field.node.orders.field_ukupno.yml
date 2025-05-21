@@ -1,0 +1,23 @@
+uuid: 5c5a7a1b-806b-4661-bd0b-2755a0c94c21
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ukupno
+    - node.type.orders
+id: node.orders.field_ukupno
+field_name: field_ukupno
+entity_type: node
+bundle: orders
+label: Ukupno
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: RSD
+field_type: decimal

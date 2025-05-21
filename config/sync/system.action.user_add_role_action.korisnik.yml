@@ -1,0 +1,14 @@
+uuid: bc288801-8fab-4ab0-928d-0aa1cce1afa2
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.korisnik
+  module:
+    - user
+id: user_add_role_action.korisnik
+label: 'Add the Korisnik role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: korisnik

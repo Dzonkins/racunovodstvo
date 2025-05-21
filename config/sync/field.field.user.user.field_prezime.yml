@@ -1,0 +1,20 @@
+uuid: 34fc9e09-4fb2-45cd-ad42-8a705dfb50ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_prezime
+  module:
+    - user
+id: user.user.field_prezime
+field_name: field_prezime
+entity_type: user
+bundle: user
+label: Prezime
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

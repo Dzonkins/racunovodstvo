@@ -1,0 +1,41 @@
+uuid: b0ca8349-d056-4cfe-9e36-b236848e9173
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+    - user
+  theme:
+    - bootstrap5
+_core:
+  default_config_hash: Fm7sDs2U1u99MaVOZEZqa-QOJrrUiQMWJb1jMozYO48
+id: bootstrap5_main_navigation
+theme: bootstrap5
+region: nav_branding
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated
+      administrator: administrator
+      korisnik: korisnik
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/companies\r\n/node/add/companies\r\n"

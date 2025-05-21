@@ -1,0 +1,19 @@
+uuid: 7bc94b41-93c5-4af6-a437-c52d69096ed3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_maticni_broj
+    - node.type.contacts
+id: node.contacts.field_maticni_broj
+field_name: field_maticni_broj
+entity_type: node
+bundle: contacts
+label: 'Maticni broj'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

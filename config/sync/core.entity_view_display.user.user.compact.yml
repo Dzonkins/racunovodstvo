@@ -4,10 +4,12 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.user.compact
-    - field.field.user.user.user_picture
-    - image.style.thumbnail
+    - field.field.user.user.field_adreasa
+    - field.field.user.user.field_grad
+    - field.field.user.user.field_ime
+    - field.field.user.user.field_jmbg
+    - field.field.user.user.field_prezime
   module:
-    - image
     - user
 _core:
   default_config_hash: 00zr_RBdTjPjBGITD3h4c1ESQZimjdVCcHGt1trLqIY
@@ -15,17 +17,11 @@ id: user.user.compact
 targetEntityType: user
 bundle: user
 mode: compact
-content:
-  user_picture:
-    type: image
-    label: hidden
-    settings:
-      image_style: thumbnail
-      image_link: content
-      image_loading:
-        attribute: lazy
-    third_party_settings: {  }
-    weight: 0
-    region: content
+content: {  }
 hidden:
+  field_adreasa: true
+  field_grad: true
+  field_ime: true
+  field_jmbg: true
+  field_prezime: true
   member_for: true

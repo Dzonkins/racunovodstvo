@@ -1,0 +1,100 @@
+uuid: bdc648d8-a24f-47f8-af15-61e48c45fd6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.orders.field_dobavljac
+    - field.field.node.orders.field_firma_id
+    - field.field.node.orders.field_kupac
+    - field.field.node.orders.field_osnovica
+    - field.field.node.orders.field_pdv
+    - field.field.node.orders.field_statusfakture
+    - field.field.node.orders.field_tipfakture
+    - field.field.node.orders.field_ukupno
+    - node.type.orders
+  module:
+    - user
+id: node.orders.default
+targetEntityType: node
+bundle: orders
+mode: default
+content:
+  field_dobavljac:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_firma_id:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_kupac:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_osnovica:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_pdv:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_statusfakture:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_tipfakture:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_ukupno:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

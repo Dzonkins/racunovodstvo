@@ -5,6 +5,7 @@ module:
   admin_toolbar_search: 0
   admin_toolbar_tools: 0
   announcements_feed: 0
+  autologout_alterable: 0
   automated_cron: 0
   big_pipe: 0
   block: 0
@@ -28,10 +29,12 @@ module:
   help: 0
   history: 0
   image: 0
+  invoices: 0
   jquery_ui: 0
   jquery_ui_autocomplete: 0
   jquery_ui_menu: 0
   link: 0
+  main_page: 0
   menu_link_content: 0
   menu_ui: 0
   mysql: 0
@@ -40,6 +43,9 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
+  registration: 0
+  registration_role: 0
+  remove_reset_password: 0
   search: 0
   shortcut: 0
   symfony_mailer: 0
@@ -51,6 +57,7 @@ module:
   toolbar: 0
   update: 0
   user: 0
+  user_redirect: 0
   views_ui: 0
   webform: 0
   webform_templates: 0
@@ -62,4 +69,6 @@ theme:
   olivero: 0
   claro: 0
   gin: 0
+  stable9: 0
+  bootstrap5: 0
 profile: standard

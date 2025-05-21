@@ -1,0 +1,19 @@
+uuid: cdec96cf-71c7-450a-a29e-ab276c199b5f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_grad
+    - node.type.contacts
+id: node.contacts.field_grad
+field_name: field_grad
+entity_type: node
+bundle: contacts
+label: Grad
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

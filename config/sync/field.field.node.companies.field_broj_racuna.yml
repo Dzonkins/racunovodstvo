@@ -1,0 +1,19 @@
+uuid: 6a868507-3b1e-4576-a3ec-361a73334c1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_broj_racuna
+    - node.type.companies
+id: node.companies.field_broj_racuna
+field_name: field_broj_racuna
+entity_type: node
+bundle: companies
+label: 'Broj racuna'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

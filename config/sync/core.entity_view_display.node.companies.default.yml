@@ -1,20 +1,20 @@
-uuid: d013d916-b516-407a-b5cd-fa10636bd715
+uuid: cdb9efdb-25f2-4502-b727-20717d420952
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.user.user.field_adreasa
-    - field.field.user.user.field_grad
-    - field.field.user.user.field_ime
-    - field.field.user.user.field_jmbg
-    - field.field.user.user.field_prezime
+    - field.field.node.companies.field_adreasa
+    - field.field.node.companies.field_broj_racuna
+    - field.field.node.companies.field_grad
+    - field.field.node.companies.field_maticni_broj
+    - field.field.node.companies.field_pib
+    - field.field.node.companies.field_zastupnik
+    - node.type.companies
   module:
     - user
-_core:
-  default_config_hash: mZLyuWM9CQx2ZJVqFGSbzgFnHzudVbHBYmdU256A5Wk
-id: user.user.default
-targetEntityType: user
-bundle: user
+id: node.companies.default
+targetEntityType: node
+bundle: companies
 mode: default
 content:
   field_adreasa:
@@ -23,7 +23,15 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 10
+    weight: 105
+    region: content
+  field_broj_racuna:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 106
     region: content
   field_grad:
     type: string
@@ -31,35 +39,35 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 9
+    weight: 104
     region: content
-  field_ime:
+  field_maticni_broj:
     type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 7
+    weight: 103
     region: content
-  field_jmbg:
+  field_pib:
     type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 6
+    weight: 102
     region: content
-  field_prezime:
+  field_zastupnik:
     type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 8
+    weight: 107
     region: content
-  member_for:
+  links:
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 100
     region: content
 hidden: {  }

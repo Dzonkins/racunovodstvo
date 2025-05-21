@@ -1,0 +1,19 @@
+uuid: 9ef38b83-2b62-4d31-a011-8292923babb9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pib
+    - node.type.companies
+id: node.companies.field_pib
+field_name: field_pib
+entity_type: node
+bundle: companies
+label: PIB
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

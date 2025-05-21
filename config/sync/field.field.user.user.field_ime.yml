@@ -1,0 +1,20 @@
+uuid: 9eefa049-9dab-4ed8-96ba-9d561d68631c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_ime
+  module:
+    - user
+id: user.user.field_ime
+field_name: field_ime
+entity_type: user
+bundle: user
+label: Ime
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

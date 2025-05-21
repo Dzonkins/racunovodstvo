@@ -1,0 +1,18 @@
+uuid: 9b9ffa11-6698-46d7-b2aa-169f323cf698
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.companies
+id: node.companies.title
+field_name: title
+entity_type: node
+bundle: companies
+label: 'Ime firme'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,14 @@
+uuid: 38d2add1-d700-412e-8db5-a0d643df9a6a
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.korisnik
+  module:
+    - user
+id: user_remove_role_action.korisnik
+label: 'Remove the Korisnik role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: korisnik

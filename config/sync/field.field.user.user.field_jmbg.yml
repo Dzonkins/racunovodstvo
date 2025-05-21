@@ -1,0 +1,20 @@
+uuid: 27992b42-a94d-4908-9397-89e8e74d5d51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_jmbg
+  module:
+    - user
+id: user.user.field_jmbg
+field_name: field_jmbg
+entity_type: user
+bundle: user
+label: JMBG
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

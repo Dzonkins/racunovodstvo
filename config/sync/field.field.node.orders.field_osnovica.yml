@@ -1,0 +1,23 @@
+uuid: 2d904ed0-448d-4a43-9810-099262bfbb79
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_osnovica
+    - node.type.orders
+id: node.orders.field_osnovica
+field_name: field_osnovica
+entity_type: node
+bundle: orders
+label: Osnovica
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ' RSD'
+field_type: decimal

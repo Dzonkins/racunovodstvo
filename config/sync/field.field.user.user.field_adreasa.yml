@@ -1,0 +1,20 @@
+uuid: ed57b242-f5dd-432e-a7bd-3cea5d309d06
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_adreasa
+  module:
+    - user
+id: user.user.field_adreasa
+field_name: field_adreasa
+entity_type: user
+bundle: user
+label: Adreasa
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

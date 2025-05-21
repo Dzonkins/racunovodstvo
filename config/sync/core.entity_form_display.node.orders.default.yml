@@ -1,0 +1,95 @@
+uuid: d22a9846-52ab-4803-9551-f7dc3a670a83
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.orders.field_dobavljac
+    - field.field.node.orders.field_firma_id
+    - field.field.node.orders.field_kupac
+    - field.field.node.orders.field_osnovica
+    - field.field.node.orders.field_pdv
+    - field.field.node.orders.field_statusfakture
+    - field.field.node.orders.field_tipfakture
+    - field.field.node.orders.field_ukupno
+    - node.type.orders
+  module:
+    - path
+id: node.orders.default
+targetEntityType: node
+bundle: orders
+mode: default
+content:
+  field_dobavljac:
+    type: string_textfield
+    weight: 28
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_kupac:
+    type: string_textfield
+    weight: 29
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_osnovica:
+    type: number
+    weight: 30
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_pdv:
+    type: number
+    weight: 31
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_statusfakture:
+    type: string_textfield
+    weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_tipfakture:
+    type: string_textfield
+    weight: 26
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_ukupno:
+    type: number
+    weight: 32
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_firma_id: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

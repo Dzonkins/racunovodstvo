@@ -1,0 +1,19 @@
+uuid: 4f597797-97dd-4073-bbd2-23f395f8fdaa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pib
+    - node.type.contacts
+id: node.contacts.field_pib
+field_name: field_pib
+entity_type: node
+bundle: contacts
+label: PIB
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

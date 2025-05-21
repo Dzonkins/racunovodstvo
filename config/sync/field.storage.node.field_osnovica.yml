@@ -1,0 +1,20 @@
+uuid: 0dcc292b-d5b0-4e81-a55f-80393da5fce1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_osnovica
+field_name: field_osnovica
+entity_type: node
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

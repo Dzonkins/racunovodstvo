@@ -1,0 +1,20 @@
+uuid: 4812f5ef-6370-4c1b-bcc0-94cda1304b75
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_grad
+  module:
+    - user
+id: user.user.field_grad
+field_name: field_grad
+entity_type: user
+bundle: user
+label: Grad
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

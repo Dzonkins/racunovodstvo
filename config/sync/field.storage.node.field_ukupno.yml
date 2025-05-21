@@ -1,0 +1,20 @@
+uuid: 7d5ca0e7-9713-4e69-85be-70ec2b06416c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_ukupno
+field_name: field_ukupno
+entity_type: node
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

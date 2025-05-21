@@ -1,0 +1,23 @@
+uuid: 05bdd308-0b97-4518-9ce3-14a62d41a6f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pdv
+    - node.type.orders
+id: node.orders.field_pdv
+field_name: field_pdv
+entity_type: node
+bundle: orders
+label: PDV
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: RSD
+field_type: decimal

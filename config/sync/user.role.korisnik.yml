@@ -1,0 +1,21 @@
+uuid: 1dbdf1f6-a2af-47ea-a23a-686e8dfc1cfa
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.companies
+    - node.type.contacts
+    - node.type.orders
+  module:
+    - node
+    - system
+id: korisnik
+label: Korisnik
+weight: 4
+is_admin: false
+permissions:
+  - 'access content'
+  - 'create companies content'
+  - 'create contacts content'
+  - 'create orders content'
+  - 'delete own contacts content'

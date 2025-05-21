@@ -1,0 +1,18 @@
+uuid: 91fefe8a-b60d-4374-9853-597e78b74c96
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.orders
+id: node.orders.title
+field_name: title
+entity_type: node
+bundle: orders
+label: 'Broj fakture'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
