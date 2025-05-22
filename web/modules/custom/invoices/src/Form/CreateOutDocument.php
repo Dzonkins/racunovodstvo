@@ -5,6 +5,7 @@ namespace Drupal\invoices\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+
 class CreateOutDocument extends FormBase {
   
   public function getFormId() {
@@ -66,10 +67,13 @@ class CreateOutDocument extends FormBase {
 
     $items = $form_state->getValue('items');
     if (!$items) {
+      $items = $form_state->get('items');
+    }
+    if (!$items) {
       $items = [
         ['naziv' => '', 'kolicina' => 1, 'cena' => 0, 'osnovica' => 0, 'iznos_pdv' => 0, 'pdv_posto' => 0, 'ukupno' => 0],
       ];
-      $form_state->setValue('items', $items);
+      $form_state->set('items', $items);
     }
 
     $form['items'] = [
@@ -89,7 +93,16 @@ class CreateOutDocument extends FormBase {
       '#suffix' => '</div>',
     ];
 
-    foreach ($items as $delta => $item) {
+    foreach ($items as $delta => &$item) {
+      $kolicina = isset($item['kolicina']) && is_numeric($item['kolicina']) ? $kolicina = $item['kolicina'] : 0;
+      $cena = isset($item['cena']) && is_numeric($item['cena']) ? $item['cena'] : 0;
+      $pdv_posto = isset($item['pdv_posto']) && is_numeric($item['pdv_posto']) ? $item['pdv_posto'] : 0;
+      $iznos_pdv = round($kolicina * $cena * ($pdv_posto / 100), 2);
+      $ukupno = round($kolicina * $cena + $iznos_pdv, 2);
+      $item['iznos_pdv'] = $iznos_pdv;
+      $item['ukupno'] = $ukupno;
+      $item['osnovica'] = round($kolicina * $cena, 2);
+
       $form['items'][$delta]['naziv'] = [
         '#type' => 'textfield',
         '#default_value' => $item['naziv'],
@@ -103,6 +116,9 @@ class CreateOutDocument extends FormBase {
           'callback' => '::ajaxCallback',
           'event' => 'change',
           'wrapper' => 'items-table-wrapper',
+          'progress' => [
+            'type' => 'none',
+          ],
         ],
       ];
       $form['items'][$delta]['cena'] = [
@@ -114,26 +130,29 @@ class CreateOutDocument extends FormBase {
           'callback' => '::ajaxCallback',
           'event' => 'change',
           'wrapper' => 'items-table-wrapper',
+          'progress' => [
+            'type' => 'none',
+          ],
         ],
       ];
       $form['items'][$delta]['osnovica'] = [
         '#type' => 'number',
-        '#default_value' => $item['osnovica'],
+        '#value' => $item['osnovica'],
         '#step' => 0.01,
         '#min' => 0,
+        '#disabled' => TRUE,
         '#attributes' => [
-          'readonly' => 'readonly',
           'tabindex' => '-1',
           'style' => 'pointer-events: none;',
         ],
       ];
       $form['items'][$delta]['iznos_pdv'] = [
         '#type' => 'number',
-        '#default_value' => $item['iznos_pdv'],
+        '#value' => $item['iznos_pdv'],
         '#step' => 0.01,
         '#min' => 0,
+        '#disabled' => TRUE,
         '#attributes' => [
-          'readonly' => 'readonly',
           'tabindex' => '-1',
           'style' => 'pointer-events: none;',
         ],
@@ -142,14 +161,22 @@ class CreateOutDocument extends FormBase {
         '#type' => 'number',
         '#default_value' => $item['pdv_posto'],
         '#step' => 1,
+        '#ajax' => [
+          'callback' => '::ajaxCallback',
+          'event' => 'change',
+          'wrapper' => 'items-table-wrapper',
+          'progress' => [
+            'type' => 'none',
+          ],
+        ],
       ];
       $form['items'][$delta]['ukupno'] = [
         '#type' => 'number',
-        '#default_value' => $item['ukupno'],
+        '#value' => $item['ukupno'],
         '#step' => 0.01,
         '#min' => 0,
+        '#disabled' => TRUE,
         '#attributes' => [
-          'readonly' => 'readonly',
           'tabindex' => '-1',
           'style' => 'pointer-events: none;',
         ],
@@ -206,7 +233,7 @@ class CreateOutDocument extends FormBase {
   }
 
   public function addItem(array &$form, FormStateInterface $form_state) {
-    $items = $form_state->get('items') ?? [];
+    $items = $form_state->get('items');
     $items[] = ['naziv' => '', 'kolicina' => 1, 'cena' => 0, 'osnovica' => 0, 'iznos_pdv' => 0, 'pdv_posto' => 0, 'ukupno' => 0];
     $form_state->set('items', $items);
     $form_state->setRebuild();
@@ -215,36 +242,15 @@ class CreateOutDocument extends FormBase {
   public function removeItem(array &$form, FormStateInterface $form_state) {
     $triggering_element = $form_state->getTriggeringElement();
     $delta = str_replace('remove-', '', $triggering_element['#name']);
-    $items = $form_state->get('items') ?? [];
+    $items = $form_state->getValue('items') ?? [];
     unset($items[$delta]);
-    $form_state->set('items', array_values($items));
+    $items = array_values($items);
+    $form_state->set('items', $items);
+    $form_state->setValue('items', $items);
     $form_state->setRebuild();
   }
 
   public function ajaxCallback(array &$form, FormStateInterface $form_state) {
-    $items = $form_state->getValue('items');
-    foreach ($items as $delta => &$item) {
-        $kolicina = isset($item['kolicina']) && is_numeric($item['kolicina']) ? $item['kolicina'] : 0;
-        $cena = isset($item['cena']) && is_numeric($item['cena']) ? $item['cena'] : 0;
-        $item['osnovica'] = round($kolicina * $cena, 2);
-
-        // Log each item's calculation
-        \Drupal::logger('invoices')->notice('Row @delta: kolicina=@kolicina, cena=@cena, osnovica=@osnovica', [
-            '@delta' => $delta,
-            '@kolicina' => $kolicina,
-            '@cena' => $cena,
-            '@osnovica' => $item['osnovica'],
-        ]);
-    }
-    // Log the whole items array
-    \Drupal::logger('invoices')->notice('All items after calculation: <pre>@items</pre>', [
-        '@items' => print_r($items, TRUE),
-    ]);
-    $form_state->set('items', $items);
-    $form_state->setValue('items', $items);
-
-    $form_state->setRebuild(TRUE);
-
     return $form['items'];
   }
 
